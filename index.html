@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sairaj Yeshwante — Java Developer portfolio." />
+  <title>Sairaj Yeshwante | Java Developer</title>
+  <style>
+    :root {
+      --bg: #07090d;
+      --surface: #0d1118;
+      --surface-2: #111722;
+      --text: #f4f7fb;
+      --muted: #9aa5b5;
+      --accent: #7c6cff;
+      --accent-2: #25d9ff;
+      --border: rgba(255,255,255,.09);
+      --max: 1120px;
+      --radius: 18px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background:
+        radial-gradient(circle at 80% 0%, rgba(124,108,255,.13), transparent 28rem),
+        radial-gradient(circle at 10% 25%, rgba(37,217,255,.07), transparent 25rem),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.65;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(var(--max), calc(100% - 40px)); margin: auto; }
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+      background: rgba(7,9,13,.72); backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner { height: 72px; display:flex; align-items:center; justify-content:space-between; }
+    .logo { font-weight: 800; letter-spacing: -.04em; font-size: 1.15rem; }
+    .logo span { color: var(--accent); }
+    .links { display:flex; gap: 28px; color: var(--muted); font-size:.92rem; }
+    .links a:hover { color: var(--text); }
+    .menu { display:none; background:none; border:0; color:var(--text); font-size:1.5rem; }
+    section { padding: 105px 0; }
+    .hero { min-height: 100vh; display:flex; align-items:center; padding-top: 150px; }
+    .eyebrow { color:var(--accent-2); font-weight:700; font-size:.85rem; text-transform:uppercase; letter-spacing:.16em; margin-bottom:18px; }
+    h1 { font-size: clamp(3.1rem, 8vw, 6.8rem); line-height:.95; letter-spacing:-.065em; max-width: 900px; }
+    h1 .accent { color:var(--accent); }
+    .hero p { max-width: 680px; color:var(--muted); font-size:1.12rem; margin:28px 0; }
+    .actions { display:flex; gap:14px; flex-wrap:wrap; }
+    .btn {
+      display:inline-flex; align-items:center; justify-content:center; padding:12px 20px;
+      border:1px solid var(--border); border-radius:999px; transition:.25s;
+      font-weight:700; cursor:pointer;
+    }
+    .btn.primary { background:var(--text); color:#080a0e; border-color:var(--text); }
+    .btn.secondary { background:rgba(255,255,255,.03); }
+    .btn:hover { transform:translateY(-2px); border-color:rgba(255,255,255,.25); }
+    .hero-meta { display:flex; gap:26px; margin-top:50px; color:var(--muted); font-size:.9rem; flex-wrap:wrap; }
+    .hero-meta strong { color:var(--text); display:block; }
+    .section-head { display:flex; justify-content:space-between; gap:30px; align-items:end; margin-bottom:38px; }
+    .kicker { color:var(--accent); font-size:.78rem; text-transform:uppercase; letter-spacing:.15em; font-weight:800; }
+    h2 { font-size:clamp(2rem, 4vw, 3.2rem); letter-spacing:-.045em; line-height:1.05; margin-top:8px; }
+    .section-head p { max-width:470px; color:var(--muted); }
+    .about-grid { display:grid; grid-template-columns:1.2fr .8fr; gap:24px; }
+    .card {
+      background:linear-gradient(145deg, rgba(255,255,255,.045), rgba(255,255,255,.018));
+      border:1px solid var(--border); border-radius:var(--radius); padding:28px;
+      box-shadow: 0 20px 70px rgba(0,0,0,.18);
+    }
+    .about-copy { font-size:1.08rem; color:#c7ced8; }
+    .about-copy p + p { margin-top:16px; }
+    .stats { display:grid; gap:14px; }
+    .stat { padding:20px; border:1px solid var(--border); border-radius:15px; background:rgba(255,255,255,.025); }
+    .stat strong { font-size:1.35rem; display:block; }
+    .stat span { color:var(--muted); font-size:.88rem; }
+    .skills { display:flex; flex-wrap:wrap; gap:10px; }
+    .skill { padding:9px 13px; border:1px solid var(--border); border-radius:999px; color:#cbd3df; background:rgba(255,255,255,.025); }
+    .skill:hover { border-color:var(--accent); color:var(--text); }
+    .project-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    .project { display:flex; flex-direction:column; min-height:330px; transition:.3s; }
+    .project:hover { transform:translateY(-5px); border-color:rgba(124,108,255,.45); }
+    .project-num { color:var(--accent); font-weight:800; font-size:.8rem; }
+    .project h3 { font-size:1.4rem; margin:16px 0 10px; letter-spacing:-.025em; }
+    .project p { color:var(--muted); font-size:.93rem; flex:1; }
+    .tags { display:flex; flex-wrap:wrap; gap:7px; margin:18px 0; }
+    .tag { font-size:.74rem; padding:5px 8px; border-radius:7px; background:rgba(124,108,255,.1); color:#c7c0ff; }
+    .project-links { display:flex; gap:14px; font-size:.88rem; font-weight:700; }
+    .timeline { position:relative; display:grid; gap:18px; }
+    .timeline-item { display:grid; grid-template-columns:150px 1fr; gap:25px; }
+    .date { color:var(--accent-2); font-size:.84rem; padding-top:4px; }
+    .timeline-item h3 { font-size:1.2rem; }
+    .timeline-item .company { color:var(--muted); margin:3px 0 12px; }
+    .timeline-item ul { color:#aeb8c6; padding-left:18px; }
+    .edu-grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+    .edu h3 { margin:8px 0 5px; }
+    .edu p { color:var(--muted); }
+    .contact { text-align:center; padding-bottom:120px; }
+    .contact h2 { max-width:700px; margin:10px auto 18px; }
+    .contact p { color:var(--muted); max-width:580px; margin:0 auto 26px; }
+    footer { border-top:1px solid var(--border); padding:25px 0; color:var(--muted); font-size:.85rem; }
+    .footer-inner { display:flex; justify-content:space-between; gap:15px; flex-wrap:wrap; }
+    .socials { display:flex; gap:18px; }
+    .reveal { opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s ease; }
+    .reveal.show { opacity:1; transform:none; }
+    @media (max-width: 800px) {
+      .links { display:none; position:absolute; top:72px; left:0; right:0; padding:20px; background:rgba(7,9,13,.97); border-bottom:1px solid var(--border); flex-direction:column; gap:14px; }
+      .links.open { display:flex; }
+      .menu { display:block; }
+      .about-grid,.edu-grid { grid-template-columns:1fr; }
+      .project-grid { grid-template-columns:1fr; }
+      .timeline-item { grid-template-columns:1fr; gap:5px; }
+      section { padding:80px 0; }
+    }
+    @media (max-width: 500px) {
+      .container { width:min(var(--max), calc(100% - 28px)); }
+      h1 { font-size:3.5rem; }
+      .hero { min-height:auto; padding:145px 0 90px; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="container nav-inner">
+      <a class="logo" href="#home">Sairaj<span>.</span></a>
+      <button class="menu" aria-label="Open menu">☰</button>
+      <div class="links">
+        <a href="#about">About</a><a href="#skills">Skills</a><a href="#experience">Experience</a>
+        <a href="#projects">Projects</a><a href="#education">Education</a><a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container reveal">
+        <div class="eyebrow">Java Developer · Backend · Full Stack</div>
+        <h1>Sairaj<br><span class="accent">Yeshwante.</span></h1>
+        <p>Computer Engineering graduate and CDAC professional focused on Java, Spring Boot, backend development, databases, APIs, debugging, and practical software solutions.</p>
+        <div class="actions">
+          <a class="btn primary" href="#projects">View Projects ↗</a>
+          <a class="btn secondary" href="#contact">Contact Me</a>
+          <a class="btn secondary" href="#" id="resume">Download Resume</a>
+        </div>
+        <div class="hero-meta">
+          <div><strong>Java</strong>Core → Spring Boot</div>
+          <div><strong>Backend</strong>APIs + Databases</div>
+          <div><strong>Open to</strong>Developer Opportunities</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container reveal">
+        <div class="section-head">
+          <div><div class="kicker">01 / About</div><h2>Building with logic,<br>learning by solving.</h2></div>
+          <p>A developer profile centered around backend engineering, debugging, databases, and continuous learning.</p>
+        </div>
+        <div class="about-grid">
+          <div class="card about-copy">
+            <p>I completed my B.E. in Computer Engineering in 2024, followed by a CDAC Diploma in Advanced Computing. My development background includes Java, Spring Boot, SQL, web technologies, and .NET.</p>
+            <p>I enjoy understanding how applications work behind the scenes — from API requests and business logic to database queries and troubleshooting production-style issues.</p>
+            <p>My current focus is growing as a Java developer and building reliable, maintainable backend systems.</p>
+          </div>
+          <div class="stats">
+            <div class="stat"><strong>Java + Spring Boot</strong><span>Primary development focus</span></div>
+            <div class="stat"><strong>SQL + APIs</strong><span>Backend and data layer</span></div>
+            <div class="stat"><strong>Debugging</strong><span>Problem-solving mindset</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container reveal">
+        <div class="section-head">
+          <div><div class="kicker">02 / Toolkit</div><h2>Technical Skills</h2></div>
+        </div>
+        <div class="card">
+          <div class="skills">
+            <span class="skill">Java</span><span class="skill">Core Java</span><span class="skill">OOP</span>
+            <span class="skill">JDBC</span><span class="skill">Spring Boot</span><span class="skill">Hibernate</span>
+            <span class="skill">REST APIs</span><span class="skill">SQL</span><span class="skill">MSSQL</span>
+            <span class="skill">MySQL</span><span class="skill">HTML5</span><span class="skill">CSS3</span>
+            <span class="skill">JavaScript</span><span class="skill">React.js</span><span class="skill">Bootstrap</span>
+            <span class="skill">C#</span><span class="skill">.NET Framework</span><span class="skill">Git</span>
+            <span class="skill">Postman</span><span class="skill">Eclipse</span><span class="skill">VS Code</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="container reveal">
+        <div class="section-head">
+          <div><div class="kicker">02 / Experience</div><h2>Where I've worked.</h2></div>
+        </div>
+       
+          <div class="card timeline-item">
+            <div class="date">09/2024 — 02/2025</div>
+            <div>
+              <h3>CDAC Intern</h3><div class="company">CDAC Hyderabad</div>
+              <ul>
+                <li>Developed and validated Java applications using Core Java, JDBC, Servlets, and SQL.</li>
+                <li>Worked on CRUD operations, relational databases, debugging, and root-cause analysis.</li>
+                <li>Built practical foundations in Java and Advanced Java development.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card timeline-item">
+            <div class="date">4-Month Internship</div>
+            <div>
+              <h3>.NET Developer Intern</h3><div class="company">Development Internship</div>
+              <ul>
+                <li>Worked with .NET Framework, HTML, CSS, Bootstrap, and MSSQL.</li>
+                <li>Built web interfaces and worked with database-driven application functionality.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container reveal">
+        <div class="section-head">
+          <div><div class="kicker">04 / Selected Work</div><h2>Projects</h2></div>
+          <p>Practical applications built around business workflows, databases, APIs, and responsive interfaces.</p>
+        </div>
+        <div class="project-grid">
+          <article class="card project">
+            <div class="project-num">01</div>
+            <h3>Insurance Management System</h3>
+            <p>A business-oriented insurance application focused on managing insurance workflows and data through a backend-driven architecture.</p>
+            <div class="tags"><span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">Hibernate</span><span class="tag">REST</span><span class="tag">SQL</span><span class="tag">React</span></div>
+            <div class="project-links"><a href="#" class="editable-link">GitHub ↗</a><a href="#" class="editable-link">Live Demo ↗</a></div>
+          </article>
+          <article class="card project">
+            <div class="project-num">02</div>
+            <h3>Real Estate / Rental App</h3>
+            <p>Web application with user-facing forms and an administrative panel for managing submitted information and database records.</p>
+            <div class="tags"><span class="tag">C#</span><span class="tag">.NET</span><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Bootstrap</span><span class="tag">MSSQL</span></div>
+            <div class="project-links"><a href="#" class="editable-link">GitHub ↗</a><a href="#" class="editable-link">Live Demo ↗</a></div>
+          </article>
+          <article class="card project">
+            <div class="project-num">03</div>
+            <h3>School Admission Form</h3>
+            <p>Responsive admission-form interface with structured sections, user-friendly controls, validation, and Bootstrap styling.</p>
+            <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Bootstrap</span><span class="tag">JavaScript</span></div>
+            <div class="project-links"><a href="#" class="editable-link">GitHub ↗</a><a href="#" class="editable-link">Live Demo ↗</a></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="container reveal">
+        <div class="section-head">
+          <div><div class="kicker">05 / Education</div><h2>Education</h2></div>
+        </div>
+        <div class="edu-grid">
+          <div class="card edu"><div class="kicker">2024</div><h3>B.E. — Computer Engineering</h3><p>Engineering degree with a foundation in computer science and software development.</p></div>
+          <div class="card edu"><div class="kicker">2024 — 2025</div><h3>CDAC — Diploma in Advanced Computing</h3><p>Advanced computing training with focus on Java, Advanced Java, SQL, and application development.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="container reveal">
+        <div class="kicker">06 / Contact</div>
+        <h2>Let's build something useful.</h2>
+        <p>Interested in working together or discussing an opportunity? Replace the placeholder links below with your real contact details.</p>
+        <div class="actions" style="justify-content:center">
+          <a class="btn primary" href="mailto:sairajcg@gmail.com">Email Me</a>
+          <a class="btn secondary" href="#" id="linkedin.com/in/sairaj-yeshwante-8188a5217">LinkedIn ↗</a>
+          <a class="btn secondary" href="#" id="github.com/sairajyeshwante">GitHub ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© 2026 Sairaj Yeshwante</span>
+      <span>Java Developer · Backend · Full Stack</span>
+    </div>
+  </footer>
+
+  <script>
+    // QUICK CUSTOMIZATION:
+    // 1. Replace your.email@example.com with your email.
+    // 2. Replace # on LinkedIn/GitHub/project links.
+    // 3. Change --accent and --accent-2 in :root to change the theme.
+    // 4. Edit text directly in this file whenever you want.
+
+    const menu = document.querySelector('.menu');
+    const links = document.querySelector('.links');
+    menu.addEventListener('click', () => links.classList.toggle('open'));
+    links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('show'); });
+    }, { threshold: .12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    document.querySelectorAll('.editable-link').forEach(a => {
+      a.addEventListener('click', e => {
+        if (a.getAttribute('href') === '#') {
+          e.preventDefault();
+          alert('Add your GitHub or live demo URL in index.html.');
+        }
+      });
+    });
+
+    document.getElementById('resume').addEventListener('click', e => {
+      if (document.getElementById('resume').getAttribute('href') === '#') {
+        e.preventDefault();
+        alert('Add your resume PDF filename/link to the Resume button in index.html.');
+      }
+    });
+  </script>
+</body>
+</html>
